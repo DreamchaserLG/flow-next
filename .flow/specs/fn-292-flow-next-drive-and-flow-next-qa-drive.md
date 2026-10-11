@@ -25,11 +25,12 @@ MergeFoundry asked for this upstream after reviewing it on 2026-10-11: it would 
 - agent-device not installed or at another version: a clear message with the install command for the pinned version. [inferred]
 - Real devices need the platform's signing and pairing; out of scope beyond saying so. [inferred]
 - agent-device is pre-1.0: pin, and record the version in each QA receipt. [inferred]
+- **Keep `references/agent-device.md` thin.** agent-device releases several times a week, so the reference holds only the version check, the core commands of the universal flow (open, snapshot, act on refs, screenshot, close) and a link to agent-device's own agent docs; it never copies their full command reference. Updating the pinned version is a one-line change plus a re-check. [inferred]
 
 ## Acceptance Criteria
 
 - **R1:** flow-next-drive classifies a native mobile target as surface D before driving and takes its ladder; on the agent-device rung it opens the app, reads a snapshot, acts on refs (tap, type, scroll) and captures a screenshot. The iOS-out-of-scope line is replaced by the surface D row. [inferred]
-- **R2:** The agent-device command detail lives in `references/agent-device.md`, read only on surface D; the base SKILL.md grows only by the D row and its ladder table. The attended Computer Use rung and the manual terminal rung follow the existing rungs' rules (attended only; unattended QA records BLOCKED). [inferred]
+- **R2:** The agent-device command detail lives in `references/agent-device.md`, read only on surface D and kept thin (see Edge Cases); the base SKILL.md grows only by the D row and its ladder table. The attended Computer Use rung and the manual terminal rung follow the existing rungs' rules (attended only; unattended QA records BLOCKED). [inferred]
 - **R3:** flow-next-qa runs a spec's scenarios on a mobile app through R1 and writes its usual receipt, with the agent-device version recorded. [inferred]
 - **R4:** Missing driver, missing device and version mismatch each end in a one-line reason with the next step; nothing is installed or booted silently. [inferred]
 - **R5:** The feature map format documents a mobile surface entry. [inferred]
@@ -46,6 +47,8 @@ MergeFoundry asked for this upstream after reviewing it on 2026-10-11: it would 
 - 2026-10-11, MergeFoundry coordinator's research (t3code `f23d0084b6`, agent-device v0.21.25): verdict "borrow the pattern": add agent-device as the mobile route in drive and QA upstream; no cockpit device panel. [inferred]
 - 2026-10-11, owner: "do a spec inside of the flow-next repo, get it pushed there"; then "this would just go into our drive ladder i assume on flow-next": yes, as surface D with its own ladder and a per-rung reference. [user]
 - Trigger: Michał Pierzchała (@thymikee, Callstack), 2026-10-10, on T3 Code's device panel "powered by agent-device" (https://x.com/thymikee/status/2108971903968845894). [inferred]
+
+- Where it goes, alternatives weighed on 2026-10-11: **a surface D ladder in flow-next-drive** (chosen: drive is already a surface router with per-rung references, qa consumes drive so mobile QA comes for free, and it keeps drive's rule "orchestrates drivers, does not reimplement them"); **a separate mobile skill** (rejected: duplicates drive's universal flow and makes qa know two drivers); **calling agent-device directly with no flow-next change** (rejected: qa would still decline iOS through drive, and no receipt would record the driver version). [inferred]
 
 ## Parked unknowns
 

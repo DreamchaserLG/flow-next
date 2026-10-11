@@ -14,8 +14,8 @@ MergeFoundry asked for this upstream after reviewing it on 2026-10-11: it would 
 
 ## Architecture & Data Models
 
-- **A mobile route in flow-next-drive.** Surface detection gains native mobile apps (iOS simulator or device, Android emulator or device, and the other platforms agent-device covers). The route drives through the `agent-device` CLI, at a pinned version the plugin documents, installed by the operator (drive never installs it silently). The SKILL.md line that declines iOS is replaced. [inferred]
-- **Lazy instructions.** Like T3's `device_open`, the mobile route's usage lives in a reference file the skill reads only when the surface is mobile, so web and desktop drive runs carry no mobile text. [inferred]
+- **A surface D and its ladder in flow-next-drive.** The router's Step 1 table (surfaces A web, B Chromium desktop, C true-native) gains **D, native mobile app** (iOS/iPadOS simulator or device, Android emulator or device; tvOS and the rest agent-device covers). Surface D gets its own ladder, probed top-down like the others, highest available rung wins: (1) **agent-device** CLI at a pinned version the plugin documents, installed by the operator, never silently; (2) attended only, on macOS: **Computer Use / Cua Driver** acting on the Simulator window, with verify limited to visible state (no snapshot refs); (3) terminal: **manual + screenshot relay**; unattended reports no driver and QA records BLOCKED. The SKILL.md line that declines iOS (`flow-next-drive/SKILL.md:107`) is replaced by the surface D row and its ladder table. [inferred]
+- **Per-rung reference.** Like `references/agent-browser.md` and `references/cua.md`, the agent-device command detail lives in a new `references/agent-device.md` (setup and version check, the universal flow in agent-device commands: open, snapshot, act on refs, screenshot, close). The base SKILL.md only gains the D row and the ladder table; the mobile text loads only on surface D, the same lazy pattern T3's `device_open` uses. [inferred]
 - **flow-next-qa** uses the route unchanged: scenarios from the spec, evidence as screenshots and snapshots, the same `qa_verdict` receipt. [inferred]
 - **Feature map:** `.flow/features/` entries can name a mobile surface and how to reach a screen (deep link, launch arguments, navigation steps). [inferred]
 
@@ -28,8 +28,8 @@ MergeFoundry asked for this upstream after reviewing it on 2026-10-11: it would 
 
 ## Acceptance Criteria
 
-- **R1:** flow-next-drive detects a native mobile surface and drives it through the pinned `agent-device` CLI: open the app, read a snapshot, tap, type, scroll, capture a screenshot; the iOS-out-of-scope line is replaced. [inferred]
-- **R2:** The mobile instructions load only on the mobile route (a reference file), and the base SKILL.md grows by at most a few lines. [inferred]
+- **R1:** flow-next-drive classifies a native mobile target as surface D before driving and takes its ladder; on the agent-device rung it opens the app, reads a snapshot, acts on refs (tap, type, scroll) and captures a screenshot. The iOS-out-of-scope line is replaced by the surface D row. [inferred]
+- **R2:** The agent-device command detail lives in `references/agent-device.md`, read only on surface D; the base SKILL.md grows only by the D row and its ladder table. The attended Computer Use rung and the manual terminal rung follow the existing rungs' rules (attended only; unattended QA records BLOCKED). [inferred]
 - **R3:** flow-next-qa runs a spec's scenarios on a mobile app through R1 and writes its usual receipt, with the agent-device version recorded. [inferred]
 - **R4:** Missing driver, missing device and version mismatch each end in a one-line reason with the next step; nothing is installed or booted silently. [inferred]
 - **R5:** The feature map format documents a mobile surface entry. [inferred]
@@ -44,7 +44,7 @@ MergeFoundry asked for this upstream after reviewing it on 2026-10-11: it would 
 ## Decision Context
 
 - 2026-10-11, MergeFoundry coordinator's research (t3code `f23d0084b6`, agent-device v0.21.25): verdict "borrow the pattern": add agent-device as the mobile route in drive and QA upstream; no cockpit device panel. [inferred]
-- 2026-10-11, owner: "do a spec inside of the flow-next repo, get it pushed there". [user]
+- 2026-10-11, owner: "do a spec inside of the flow-next repo, get it pushed there"; then "this would just go into our drive ladder i assume on flow-next": yes, as surface D with its own ladder and a per-rung reference. [user]
 - Trigger: Michał Pierzchała (@thymikee, Callstack), 2026-10-10, on T3 Code's device panel "powered by agent-device" (https://x.com/thymikee/status/2108971903968845894). [inferred]
 
 ## Parked unknowns

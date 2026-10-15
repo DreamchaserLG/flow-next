@@ -6,6 +6,12 @@ Flow-Next changed shape with 5.0.0. One command, `/flow-next:flow`, reads whatev
 
 ## Unreleased
 
+## [flow-next 8.8.0] - 2026-10-15
+
+Flow-Next routes four more kinds of request on its own, and unattended landing stops paying for base changes it does not need yet. Hand flow a captured profile or crash dump and it explains it without touching code; tell it agents keep making the same mistake and it captures a spec of checks that fail on a past occurrence; ask whether a prompt change behaves better and it measures; ask what a diff could break and it proves the one fact the change is safe because of. In a routing study the new requests routed correctly in 32 of 32 draws and none of the 27 existing request types changed route. Land now catches up with the base once, as the last step before an authorized merge, so a busy base costs one CI run instead of one per tick, and patience counts from the author's last push.
+
+**What changes when you upgrade.** Audit's Harden path no longer writes a CLAUDE.md or AGENTS.md rule for a lesson a check could enforce. When the right fix changes code, or the repository has no lint or CI surface for the gate, it recommends flow's repeated-mistake route and leaves the entry active. Entries hardened into an instruction-file rule earlier keep their liveness check. Land now also brings a pull request up to date when it is behind a base that does not require up-to-date branches, and on every repository it does so only once the other gates pass.
+
 ### Added
 
 - **Hand flow a captured profile, trace, heap snapshot or crash dump and get a diagnosis, not a fix.** Flow loads the artifact with tools you already have, names what bounds the cost or holds the memory, maps it to source, calls a cause confirmed only when a before-and-after pair or a reproduction shows it, and ends by naming the route that would fix it. It writes no code, no `.flow/` file and no pull request.
@@ -16,7 +22,7 @@ Flow-Next changed shape with 5.0.0. One command, `/flow-next:flow`, reads whatev
 
 ### Changed
 
-- **Land catches up with the base once, as the last step, without restarting patience.** It used to bring a behind pull request up to date before checking review, threads, CI and patience, so a busy base cost a fresh CI run on every tick and every catch-up restarted the patience window. Land now catches up only when being behind is the one thing left before the merge, pins the update to the head it just checked so a concurrent push is never merged in unseen, and counts patience from the author's last push. After two catch-ups in a row with the base still moving it stops for a person instead of chasing the base. A base that requires a merge queue is never caught up by land, red CI caused only by merging in the base stops with the base commits named instead of spending a fix, and what merges is unchanged.
+- **Land catches up with the base once, as the last step, without restarting patience.** It used to bring a behind pull request up to date before checking review, threads, CI and patience, so a busy base cost a fresh CI run on every tick and every catch-up restarted the patience window. Land now catches up only when being behind is the one thing left before the merge, pins the update to the head it just checked so a concurrent push is never merged in unseen, and counts patience from the author's last push. After two catch-ups in a row with the base still moving it stops for a person instead of chasing the base. A base that requires a merge queue is never caught up by land, red CI caused only by merging in the base stops with the base commits named instead of spending a fix. On a repository that does not require up-to-date branches, land now brings a behind pull request up to date before merging too.
 - **Audit's Harden path picks its gate from the hardening ladder.** It still writes a lint rule or a CI step in a surface your repo already has, and now proves the gate fails on a past occurrence when the entry names one. When the right fix changes code (one owner for the state, a type, a test), or the repo has no lint or CI surface for the gate, Harden recommends flow's repeated-mistake route and leaves the entry active instead of writing a CLAUDE.md or AGENTS.md rule for a lesson a check could enforce. Entries hardened into an instruction-file rule earlier keep their liveness check.
 
 ### Fixed

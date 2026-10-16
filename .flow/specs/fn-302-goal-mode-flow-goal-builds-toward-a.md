@@ -130,6 +130,7 @@ PILOT_VERDICT=GOAL_MET spec=fn-40 stage=- reason="goal fn-40; R1-R3 met on 9f8e7
 - No parallel children, no cross-repository goals, no scheduler, budget accounting or dashboard; those belong to the orchestration layer above flow-next if they are ever needed. [inferred]
 - The run never edits the goal's bar, Boundaries or budget once the goal spec exists, captures a goal only from a source the person handed to `--goal`, and never mints outside that goal. Prospect and chart stay attended. [paraphrase]
 - No change to backlog mode. [inferred]
+- No cost for runs without `--goal`: they load only the token parse and the pointer lines in auto.md and capture, the four reworded rules stay about the same length, and flow's skill description, which every session carries, gains at most one clause. No flowctl runtime change. [paraphrase]
 
 ## Decision Context
 <!-- scope: both -->
@@ -141,7 +142,7 @@ Users already run this pattern by hand with loop prompts, and it drifts on long 
 
 Credit: @DanielKillenberger proposed goal mode and described the real case in #559. [paraphrase]
 
-Delivery order: after fn-297 (a spec dependency), and ahead of the open fn-298, fn-299 and fn-301 when run by name; which release carries it, and what a 9.0.0 contains, is decided after fn-297 lands. [paraphrase]
+Delivery order: after fn-297 (a spec dependency), and ahead of the open fn-298, fn-299 and fn-301 when run by name. Release: goal mode is the headline of 9.0.0, which also carries fn-297, fn-298, fn-299 and fn-301 and is cut once, with no 8.9.0 in between; the release notes lead with goal mode and then order the rest by their weight as features. [paraphrase]
 
 ### Implementation Tradeoffs
 <!-- scope: technical -->

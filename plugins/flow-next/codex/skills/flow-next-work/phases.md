@@ -80,7 +80,7 @@ Only when the spec's `depends_on_epics` (in `$FLOWCTL show <spec-id> --json`) is
 the fence prints `BLOCKED:`: read [references/chained-spec.md](references/chained-spec.md).
 
 ```bash
-# fence:work-branch — inputs: FLOWCTL, SPEC_ID, BRANCH_NAME, BRANCH_MODE (new|current), DEFAULT_BASE (optional; defaults to origin/HEAD); origin reachable
+# fence:work-branch — inputs: FLOWCTL, SPEC_ID, BRANCH_NAME, BRANCH_MODE (new|current), DEFAULT_BASE (optional, from --base; defaults to origin/HEAD); origin reachable
 branch_git() {
   local output
   output=$(git "$@" 2>&1) || { printf "BLOCKED: git %s: %s\n" "$*" "$output" >&2; exit 2; }
@@ -91,6 +91,9 @@ CHAIN_PARENT=$(printf '%s' "$CHAIN_JSON" | jq -r '.parent // empty')
 CHAIN_PARENT_BRANCH=$(printf '%s' "$CHAIN_JSON" | jq -r '.parent_branch // empty')
 if [[ "$(printf '%s' "$CHAIN_JSON" | jq -r '.eligible')" != "true" ]]; then
   echo "BLOCKED: $(printf '%s' "$CHAIN_JSON" | jq -r '.reason')"; exit 2
+fi
+if [[ -n "$CHAIN_PARENT" && -n "${DEFAULT_BASE:-}" ]]; then
+  echo "BLOCKED: --base $DEFAULT_BASE conflicts with chain parent $CHAIN_PARENT, whose branch $CHAIN_PARENT_BRANCH is this spec's base"; exit 2
 fi
 if [[ -n "$CHAIN_PARENT" ]]; then
   git fetch -q origin "refs/heads/$CHAIN_PARENT_BRANCH:refs/remotes/origin/$CHAIN_PARENT_BRANCH" \

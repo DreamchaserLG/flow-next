@@ -6,6 +6,12 @@ Flow-Next changed shape with 5.0.0. One command, `/flow-next:flow`, reads whatev
 
 ## Unreleased
 
+## [flow-next 9.0.1] - 2026-10-18
+
+### Fixed
+
+- **Work runs the test command your repository asks for when work is finished.** When your repository's instructions name a command to run at the end of the work (a session-completion or definition-of-done checklist, or before committing, pushing or opening a pull request), work's final gate now runs that command as written, once per spec. Before, it read such a checklist as not asking and ran only focused tests. A command your instructions only list, and a repository with no such instruction, still get focused tests. It is not yet reliable: on a repository whose checklist names `bun run lint:check && bun test`, work ran it in 5 of 9 runs, against none of 9 before; on a repository that only lists its commands, it ran the suite in none of 6.
+
 ## [flow-next 9.0.0] - 2026-10-17
 
 `/flow-next:flow --goal` takes on work bigger than one spec. Give it a goal as a goal spec, a PRD, a migration target or a single sentence. It measures where things stand against the goal's criteria, writes a spec for the biggest gap, builds it through the normal pipeline with the same reviews and gates as a spec you wrote, then measures again. It keeps going until every criterion has evidence behind it. Each child spec lands on an integration branch, and the goal reaches your default branch in one final pull request with a full review. A goal that takes days picks up where it left off. [Goal mode](https://flow-next.dev/autonomy/goal-mode/) shows how to start one. Thanks to @DanielKillenberger for proposing it in #559.

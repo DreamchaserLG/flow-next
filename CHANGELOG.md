@@ -6,6 +6,8 @@ Flow-Next changed shape with 5.0.0. One command, `/flow-next:flow`, reads whatev
 
 ## Unreleased
 
+## [flow-next 9.1.1] - 2026-10-19
+
 ### Changed
 
 - **Feature-map proofs no longer pass on an app that is only half up.** Seed and maintain now count an instance as ready only once it works from an empty data directory with migrations and seed data in place, so an open port or a passing database health check is no longer enough. A journey whose seed data lacks something it needs fails with that reason instead of being shortened until it passes. Dry-run and test modes are checked for what they actually skip. A proof run in a stand-in, such as a container standing in for a fresh VM, lists the setup steps the real target will not get, so those steps stay marked unverified.

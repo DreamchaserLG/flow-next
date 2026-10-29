@@ -6,10 +6,17 @@ Flow-Next changed shape with 5.0.0. One command, `/flow-next:flow`, reads whatev
 
 ## Unreleased
 
+## [flow-next 9.4.0] - 2026-10-29
+
+`--goal` now fits the goal instead of one fixed process. A prototype can say "commit each feature straight, one review at the end" and get exactly that; a gated release keeps a pull request, review and CI per child. Either way the goal builds on its own integration branch and reaches main through one final pull request. The run also decides how to cut the goal into pieces itself: on a six-feature PRD goal with full gates it finished in 0.63x the time at 0.59x the cost of 9.3.3, and on a library port in about the same time (1.11x) at 0.81x the cost, with the same hidden-test results (one run per version per goal).
+
+**What changes when you upgrade.** A goal never lands children directly on your default branch any more; every child goes to `goal/<branch>`. A goal already doing that from an earlier release finishes the way its log records. If your CI only runs on pull requests into the default branch and a goal's children use pull requests, add `goal/**` to the trigger, or the run stops and asks.
+
 ### Changed
 
-- **Goals always use an integration branch, and the goal spec sets how strict the run is.** `--goal` no longer lands children on your main branch: every child lands on `goal/<branch>`, and main sees the goal only through one final pull request, which runs your CI. Say in plain words in the goal spec how much ceremony you want. "Prototype: commit each feature straight once the tests pass, one review at the end" gets exactly that, with no pull request or review per child. Say nothing, and your repository's configuration applies as before: a pull request and review per child, then a final review. The goal log records the rigor applied and the words it came from. A goal already landing on main from an earlier release finishes that way.
-- **The goal run decides how to split the work.** It picks how many children, how big and in what order, and drives each one through the usual stages itself instead of the one-child-per-hop loop. Every child still goes through capture, work, pull request and land, and is routed like any spec you write. On the goals we tried, runs finished with the same results in less time and for less money.
+- **The goal spec sets how strict the run is, in plain words.** Write the rigor you want in the goal spec: a pull request per child or straight commits, review per child, a final review, QA. Say nothing, and your repository's configuration applies as before: each child through work, a pull request and land, review by `review.backend`, then a final review of the whole diff. Where the words conflict with a repository rule such as branch protection, the stricter one wins. The goal log records the rigor applied and the words it came from. No new config keys or flags.
+- **The goal run decides how to split the work.** It picks how many children, how big and in what order, and when to measure, instead of following a fixed one-child-at-a-time procedure. Each child still goes through the stage skills (capture, work, pull request, land), every merge goes through land, and each child is routed by the same plan-versus-no-plan rule as a spec you write.
+- **A stalled goal stops on any landing path.** The no-progress stop counts the last two children that landed, merged or committed straight, so a light-rigor goal stops on a plateau too.
 
 ## [flow-next 9.3.3] - 2026-10-29
 

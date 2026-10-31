@@ -64,11 +64,6 @@ These items were separated from the implementation waves because each either cha
 - memory-migrate ignores the unattended markers audit honours (audit 2026-10); resolved by deciding whether it should run unattended.
 - The spec template's customization guide and cross-links (about 1.8 KB) are copied into every new spec (audit 2026-10); resolved by a template decision.
 - The comment resolver's cluster output contract (audit 2026-10): its agent prompt says a cluster returns one verdict per thread, while resolve-pr's workflow says each unit has exactly one verdict object and replies per verdict `feedback_id`; resolved by choosing one contract and testing the reply step against a multi-thread cluster.
-- Capture asks must-ask questions one at a time, while the working rules say to put related questions in one prompt (audit 2026-10); resolved by the maintainer stating which holds for capture.
-- Work's default single-task path reads the spec and task bodies in Phase 1 and again through the anchor bundle (audit 2026-10; about 7-10 KB and 1-2 calls on the most common path); resolved by a comparison run of single-task work with bodies read only through the anchor.
-- Plan review reads the whole spec before every dispatch under a "mandatory re-anchor" rule, though only a fix needs the body (audit 2026-10; median about 6 KB, up to 28 KB per review); resolved by the maintainer deciding whether the re-anchor rule may move to the fix step.
-- Prime's host recomputes the environment cross-reference and setup-stage checks that `flowctl prime classify` already emits, and the skill never names those fields (audit 2026-10); resolved by comparing the emitter's results with the host's on representative repos before switching.
-- resolve-pr given another repository's PR URL fetches and acts on the current repository, because every gh call assumes it (audit 2026-10); resolved by choosing to refuse foreign-repository URLs or to carry the repository through every call.
 
 ## Requirement coverage
 

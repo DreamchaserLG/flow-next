@@ -21,7 +21,7 @@ Read [working-rules.md](../../references/working-rules.md) first unless you alre
 
 ## Preamble
 
-**CRITICAL: flowctl is BUNDLED - NOT installed globally.** `which flowctl` will fail (expected). Define once; subsequent blocks (here and in `maintain.md`) use `$FLOWCTL`:
+**CRITICAL: flowctl is BUNDLED - NOT installed globally.** `which flowctl` will fail (expected). Define once; subsequent blocks here use `$FLOWCTL` (`maintain.md` defines its own):
 
 ```bash
 FLOWCTL="${DROID_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT}}/scripts/flowctl"
@@ -61,7 +61,7 @@ if [ ! -d ".flow/features" ]; then
   MODE="seed"
 fi
 RAW_ARGS="${ARGUMENTS:-}"
-for ARG in $RAW_ARGS; do
+for ARG in $(printf '%s\n' "$RAW_ARGS"); do
   case "$ARG" in
     --init|init|mode:seed|--seed) MODE="seed" ;;
   esac

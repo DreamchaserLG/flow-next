@@ -1,11 +1,19 @@
 {
   "branch_name": "fn-307-dead-stale-and-duplicated-instruction",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
   "created_at": "2026-10-31T10:25:29.862321Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
   "depends_on_epics": [],
   "id": "fn-307-dead-stale-and-duplicated-instruction",
+  "impl_review_rounds": {},
   "next_task": 1,
+  "plan_review_rounds": 0,
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
+  "ready": true,
   "spec_path": ".flow/specs/fn-307-dead-stale-and-duplicated-instruction.md",
   "status": "open",
   "title": "Dead, stale and duplicated instruction text (audit 2026-10 wave 1)",
@@ -20,5 +28,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-31T11:33:45.172582Z"
+  "updated_at": "2026-10-31T11:40:02.754198Z"
 }

@@ -1,11 +1,19 @@
 {
   "branch_name": "fn-308-wasted-calls-on-the-hot-paths-audit",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
   "created_at": "2026-10-31T10:25:33.723221Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
   "depends_on_epics": [],
   "id": "fn-308-wasted-calls-on-the-hot-paths-audit",
+  "impl_review_rounds": {},
   "next_task": 1,
+  "plan_review_rounds": 0,
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
+  "ready": true,
   "spec_path": ".flow/specs/fn-308-wasted-calls-on-the-hot-paths-audit.md",
   "status": "open",
   "title": "Wasted calls on the hot paths (audit 2026-10 wave 2)",
@@ -20,5 +28,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-31T10:56:46.641786Z"
+  "updated_at": "2026-10-31T11:40:03.682015Z"
 }

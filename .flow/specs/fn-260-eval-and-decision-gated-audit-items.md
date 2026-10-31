@@ -55,15 +55,6 @@ These items were separated from the implementation waves because each either cha
 - Which branch follow-up work uses when a merged spec is reopened by a new task (routing cannot resolve it today); resolved by a branch-policy decision.
 - Whether tracker push is meant to force-overwrite tracker-side edits; resolved by the maintainer, and it gates fn-255's push divergence check.
 - Cleanup sequencing: consolidating flowctl's git wrappers and the four copies of plugin-root template lookup, retiring the pre-1.0 `epics/` layout (still read at about 20 sites), and lazy argparse construction (worth it only after fn-190); resolved by a maintainer decision to schedule them.
-- The `FLOW_AUTONOMOUS` wording conflict (audit 2026-10): flow's skill says an unattended run sets it for the stages it dispatches, while auto.md says a ready-mode run that exports it has broken a rule; resolved by the maintainer stating which holds.
-- The clawpatch supported range (audit 2026-10) admits only 0.4.x while current installs are 0.8.x, so every map run warns; resolved by re-validating against 0.8 and widening, or keeping the range.
-- Retiring the removed-backend (RepoPrompt) notices kept since 8.0.0 in the review skills and setup (audit 2026-10); resolved by the maintainer's deprecation-window call.
-- `flow --auto`'s `--research` flag (parsed, never used) and its `--dry-run` one-release alias (audit 2026-10); resolved by the maintainer deciding whether to drop them.
-- The tool versions prime writes into user repositories (pre-commit hooks, ruff, the Biome schema, checkout) are several majors old (audit 2026-10); resolved by bumping them or having prime resolve current versions.
-- Plan's SHORT depth says repo-scout carries the docs-gap scout's charter, but repo-scout has no such duty (audit 2026-10); resolved by adding the duty or dropping the claim.
-- memory-migrate ignores the unattended markers audit honours (audit 2026-10); resolved by deciding whether it should run unattended.
-- The spec template's customization guide and cross-links (about 1.8 KB) are copied into every new spec (audit 2026-10); resolved by a template decision.
-- The comment resolver's cluster output contract (audit 2026-10): its agent prompt says a cluster returns one verdict per thread, while resolve-pr's workflow says each unit has exactly one verdict object and replies per verdict `feedback_id`; resolved by choosing one contract and testing the reply step against a multi-thread cluster.
 
 ## Requirement coverage
 
